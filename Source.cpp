@@ -26,7 +26,7 @@ void print_menu()
 	std::cout << "\t------------------------------------------------------------" << std::endl;
 	std::cout << "\t|                   1. Add a new member                    |" << std::endl;
 	std::cout << "\t|                  2. Add a new expense                    |" << std::endl;
-	std::cout << "\t|                  3. Show group balance                   |" << std::endl;
+	std::cout << "\t|                3. Show the group balance                 |" << std::endl;
 	std::cout << "\t|                    4. List expenses                      |" << std::endl;
 	std::cout << "\t------------------------------------------------------------" << std::endl;
 	std::cout << "\t|                         0. Exit                          |" << std::endl;

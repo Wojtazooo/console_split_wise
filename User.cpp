@@ -32,7 +32,7 @@ bool operator==(const User u1, const User u2)
 
 std::ostream& operator<<(std::ostream& out, const User& user)
 {
-	out << "\t" << std::setw(15) << user.name << std::setw(10) << std::fixed << std::setprecision(2) << user.ammount_spent
+	out << std::setw(15) << user.name << std::setw(10) << std::fixed << std::setprecision(2) << user.ammount_spent
 		<< std::setw(10) << user.due;
 	if (user.balance < 0) out << RED << std::setw(10) << std::right  << user.balance << RESET;
 	else out << std::right << std::setw(10) << user.balance;

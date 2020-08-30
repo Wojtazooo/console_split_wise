@@ -152,7 +152,7 @@ void Group::print_expenses()
 	expenses_file.open(filename_expenses_db);
 	std::cout << std::setw(20) << std::left << "NAME" << std::setw(10) << std::right << "AMMOUNT" << std::setw(10) << "WHO PAID" << std::setw(10) << "INVOLVED"<< std::endl;
 
-	for (int i = 0; i < 70; i++)
+	for (int i = 0; i < 90; i++)
 	{
 		std::cout << "-";
 	}
@@ -180,7 +180,7 @@ void Group::print_expenses()
 			words.clear();
 		}
 	}
-	for (int i = 0; i < 70; i++)
+	for (int i = 0; i < 90; i++)
 	{
 		std::cout << "-";
 	}
@@ -193,18 +193,15 @@ void Group::print_expenses()
 
 std::ostream& operator<<(std::ostream& out, const Group& group)
 {
-	out << "\t";
 	for (int i = 0; i < 50; i++) out << "-";
 	out << std::endl;
-	out << "\t" << std::setw(15) << std::right << "NAME" << std::setw(10) << "SPENT" << std::setw(10)<< "DUE" << std::setw(10) << "BALANCE" << std::endl; 
-	out << "\t";
+	out << std::setw(15) << std::right << "NAME" << std::setw(10) << "SPENT" << std::setw(10)<< "DUE" << std::setw(10) << "BALANCE" << std::endl; 
 	for (int i = 0; i < 50; i++) out << "-";
 	out << std::endl;
 	for (auto it = group.members.begin(); it < group.members.end(); it++)
 	{
 		out << (**it) << std::endl;
 	}
-	out << "\t"; 
 	for (int i = 0; i < 50; i++) out << "-";
 	out << std::endl;
 	return out;
