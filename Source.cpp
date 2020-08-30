@@ -2,19 +2,38 @@
 #include <Windows.h>
 #define BLUE "\033[34m"
 #define RESET "\033[0m"
-
+#define LOGO1 "\t        _____        _ _ _    __           ___"
+#define LOGO2 "\t       / ____|      | (_) |   \\ \\         / (_)"
+#define LOGO3 "\t       | (___  _ __ | |_| |_   \\ \\  / \\  / / _ ___  ___ "
+#define LOGO4 "\t       \\___ \\ | '_ \\| | | __|   \\ \\/   \\/ / | / __|/ _ \\ "
+#define LOGO5 "\t        ____) | |_) | | | |_     \\   /\\  /  | \\__ \\  __/  "
+#define LOGO6 "\t       |_____/|.__/ |_|_|\\__|     \\ /  \\/   |_|___/\\___| " 
+#define LOGO7 "\t              | | "
+#define LOGO8 "\t              |_| "
 void print_menu()
 {
 	system("CLS");
-	std::cout << "----------------------------" << std::endl;
-	std::cout << "|  1. Add a new member     |" << std::endl;
-	std::cout << "|  2. Add a new expense    |" << std::endl;
-	std::cout << "|  3. Show group balance   |" << std::endl;
-	std::cout << "|  4. List expenses        |" << std::endl;
-	std::cout << "----------------------------" << std::endl;
-	std::cout << "|  0. Exit                 |" << std::endl;
-	std::cout << "----------------------------" << std::endl;
+	
+	std::cout << LOGO1 << std::endl;
+	std::cout << LOGO2 << std::endl;
+	std::cout << LOGO3 << std::endl;
+	std::cout << LOGO4 << std::endl;
+	std::cout << LOGO5 << std::endl;
+	std::cout << LOGO6 << std::endl;
+	std::cout << LOGO7 << std::endl;
+	std::cout << LOGO8 << std::endl;
+
+	std::cout << "\t------------------------------------------------------------" << std::endl;
+	std::cout << "\t|                   1. Add a new member                    |" << std::endl;
+	std::cout << "\t|                  2. Add a new expense                    |" << std::endl;
+	std::cout << "\t|                  3. Show group balance                   |" << std::endl;
+	std::cout << "\t|                    4. List expenses                      |" << std::endl;
+	std::cout << "\t------------------------------------------------------------" << std::endl;
+	std::cout << "\t|                         0. Exit                          |" << std::endl;
+	std::cout << "\t------------------------------------------------------------" << std::endl;
 }
+
+
 
 void add_expense_menu(Group group)
 {
@@ -26,9 +45,9 @@ void add_expense_menu(Group group)
 	for (int i = 0; i < group.get_number_of_members(); i++)
 		involved.push_back(false);
 	system("CLS");
-	std::cout << "Enter a name of the expense: ";
+	std::cout << "Enter a name of new expense: ";
 	std::cin >> name;
-	std::cout << "Enter ammount of the expense: ";
+	std::cout << "Enter the ammount of the expense: ";
 	std::cin >> ammount;
 
 	bool fine_input = false;
@@ -80,12 +99,7 @@ int main()
 {
 	Group LD("LD");
 	LD.load_data();
-
-	system("PAUSE");
-
 	int choice = -1;
-
-	
 	while (choice != 0)
 	{
 		print_menu();
@@ -109,13 +123,14 @@ int main()
 			system("PAUSE");
 			break;
 		case 0:
-			std::cout <<  "Bye Bye!";
+			std::cout <<  "EXIT!";
+			break;
 		default:
-
 			std::cout << "Wrong value!";
 			break;
 
 		}
 	}
+	return 0;
 
 }

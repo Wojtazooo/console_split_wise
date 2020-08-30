@@ -40,10 +40,8 @@ void Group::load_data()
 	std::string line;
 	std::ifstream users_file;
 	users_file.open(filename_users_db);
-	std::cout << "Adding users: " << std::endl;
 	while (getline(users_file, line))
 	{
-		std::cout << "-" << line << std::endl;;
 		add_user(line);
 	}
 	std::cout << std::endl;
@@ -51,7 +49,6 @@ void Group::load_data()
 	std::ifstream expenses_file;
 	std::string word;
 	std::vector<std::string> words;
-	std::cout << "Loading expenses: " << std::endl ;
 	expenses_file.open(filename_expenses_db);
 	if (expenses_file.good())
 	{
@@ -62,11 +59,7 @@ void Group::load_data()
 			{
 				words.push_back(word);
 			}
-
-			std::cout << words[0] << " " << words[1] << " who paid: " << words[2] << " involve:  ";
-			for (int i = 3; i < (int)words.size(); i++)
-				std::cout << words[i];
-			std::cout << std::endl;
+			
 			std::vector<bool> involved;
 			for (int i = 0; i < (int)words.size() - 3; i++)
 			{
@@ -157,7 +150,13 @@ void Group::print_expenses()
 	std::string word, line;
 	std::vector<std::string> words;
 	expenses_file.open(filename_expenses_db);
-	std::cout << std::setw(20) << std::left << "NAME" << std::setw(10) << std::right << "AMMOUNT" << std::setw(10) << "WHO PAID" << std::endl;
+	std::cout << std::setw(20) << std::left << "NAME" << std::setw(10) << std::right << "AMMOUNT" << std::setw(10) << "WHO PAID" << std::setw(10) << "INVOLVED"<< std::endl;
+
+	for (int i = 0; i < 70; i++)
+	{
+		std::cout << "-";
+	}
+	std::cout << std::endl;
 	if (expenses_file.good())
 	{
 		while (getline(expenses_file, line))
@@ -167,13 +166,26 @@ void Group::print_expenses()
 			{
 				words.push_back(word);
 			}
-
 			std::cout << std::setw(20) << std::left  << words[0] << std::setw(10) << std::fixed << std::setprecision(2) <<std::right << stof(words[1]);
-			std::cout << std::setw(10) << this->members[stoi(words[2])]->get_name();
+			std::cout << std::setw(10) << this->members[stoi(words[2])]->get_name() << "  " ;
+			for (int i = 3; i < words.size(); i++)
+			{
+				if (stoi(words[i]))
+				{
+					std::cout << members[i - 3]->get_name();
+					if (i != words.size() - 1) std::cout << ", ";
+				}
+			}
 			std::cout << std::endl;
 			words.clear();
 		}
 	}
+	for (int i = 0; i < 70; i++)
+	{
+		std::cout << "-";
+	}
+	std::cout << std::endl;
+
 	
 }
 
@@ -181,16 +193,19 @@ void Group::print_expenses()
 
 std::ostream& operator<<(std::ostream& out, const Group& group)
 {
-	for (int i = 0; i < 45; i++) out << "-";
+	out << "\t";
+	for (int i = 0; i < 50; i++) out << "-";
 	out << std::endl;
-	out << std::setw(10) << std::right << "NAME" << std::setw(10) << "SPENT" << std::setw(10)<< "DUE" << std::setw(10) << "BALANCE" << std::endl; 
-	for (int i = 0; i < 45; i++) out << "-";
+	out << "\t" << std::setw(15) << std::right << "NAME" << std::setw(10) << "SPENT" << std::setw(10)<< "DUE" << std::setw(10) << "BALANCE" << std::endl; 
+	out << "\t";
+	for (int i = 0; i < 50; i++) out << "-";
 	out << std::endl;
 	for (auto it = group.members.begin(); it < group.members.end(); it++)
 	{
 		out << (**it) << std::endl;
 	}
-	for (int i = 0; i < 45; i++) out << "-";
+	out << "\t"; 
+	for (int i = 0; i < 50; i++) out << "-";
 	out << std::endl;
 	return out;
 }
